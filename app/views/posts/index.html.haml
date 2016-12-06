@@ -1,6 +1,6 @@
 %p#notice= notice
 %h1 Posts
-%table
+%table.table.table-bordered
   %thead
     %tr
       %th Title
@@ -12,7 +12,7 @@
       %tr
         %td= post.title
         %td= post.body
-        %td= post.User
+        %td= post.user_id
         %td= link_to 'Show', post
         %td= link_to 'Edit', edit_post_path(post)
         %td= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }
