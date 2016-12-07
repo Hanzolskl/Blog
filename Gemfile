@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 gem 'haml'
 gem 'responders'
-
+gem 'haml-rails', '~> 0.9'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -32,15 +32,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
-
-
-
-
-
-
-
-
 
 gem 'bootstrap-sass', '~> 3.3.6'
 group :development, :test do
