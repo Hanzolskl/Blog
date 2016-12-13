@@ -9,6 +9,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    #@comment = @Post.comments.new
+    @comment = Comment.new(post_id: @post.id)
     respond_with(@post)
   end
 

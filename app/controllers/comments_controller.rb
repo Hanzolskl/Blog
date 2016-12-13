@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :set_post
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -21,9 +22,8 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(comment_params)
-    @comment.save
-    respond_with(@comment)
+    @comment = Comment.create(comment_params)
+    respond_with(@comment, location: @post)
   end
 
   def update
@@ -37,8 +37,12 @@ class CommentsController < ApplicationController
   end
 
   private
+    def set_post
+      @post = Post.find(params[:post_id])
+    end
+
     def set_comment
-      @comment = Comment.find(params[:id])
+      @comment = @post.comments.find(params[:id])
     end
 
     def comment_params
