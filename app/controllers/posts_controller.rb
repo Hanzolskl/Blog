@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -9,8 +10,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    #@comment = @Post.comments.new
-    @comment = Comment.new(post_id: @post.id)
+    @comment = @post.comments.new
+    #@comment = Comment.new(post_id: @post.id)
     respond_with(@post)
   end
 
@@ -23,7 +24,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.create(post_params)
+    @post = Post.create(post_params.merge(user_id: current_user.id))
     respond_with(@post)
   end
 
@@ -43,6 +44,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :body, :user_id)
+      params.require(:post).permit(:title, :body)
     end
 end

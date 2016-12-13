@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   respond_to :html
 
   def index
-    @comments = Comment.all
+    @comments = @post.comments.all
     respond_with(@comments)
   end
 
@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
   end
 
   def new
-    @comment = Comment.new
+    @comment = @post.comments.new
     respond_with(@comment)
   end
 
@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.create(comment_params)
+    @comment = @post.comments.create(comment_params.merge(user_id: current_user.id))
     respond_with(@comment, location: @post)
   end
 
@@ -46,6 +46,6 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      params.require(:comment).permit(:body, :user_id, :post_id)
+      params.require(:comment).permit(:body)
     end
 end

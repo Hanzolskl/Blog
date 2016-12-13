@@ -22,12 +22,6 @@
   .field
     = f.label :body
     = f.text_area :body
-  .field
-    = f.label :user
-    = f.text_field :user_id
-  .field
-    = f.label :post_id
-    = f.text_field :post_id
   .actions
     = f.submit 'Save'
 = link_to 'Edit', edit_post_path(@post)
