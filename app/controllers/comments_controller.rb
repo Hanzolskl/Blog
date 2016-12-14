@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
+  before_action :set_post
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
 
   def index
-    @comments = Comment.all
+    @comments = @post.comments.all
     respond_with(@comments)
   end
 
@@ -13,7 +14,7 @@ class CommentsController < ApplicationController
   end
 
   def new
-    @comment = Comment.new
+    @comment = @post.comments.new
     respond_with(@comment)
   end
 
@@ -21,9 +22,8 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(comment_params)
-    @comment.save
-    respond_with(@comment)
+    @comment = @post.comments.create(comment_params.merge(user_id: current_user.id))
+    respond_with(@comment, location: @post)
   end
 
   def update
@@ -37,11 +37,15 @@ class CommentsController < ApplicationController
   end
 
   private
+    def set_post
+      @post = Post.find(params[:post_id])
+    end
+
     def set_comment
-      @comment = Comment.find(params[:id])
+      @comment = @post.comments.find(params[:id])
     end
 
     def comment_params
-      params.require(:comment).permit(:body, :user_id, :post_id)
+      params.require(:comment).permit(:body)
     end
 end
