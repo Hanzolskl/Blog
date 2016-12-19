@@ -36,7 +36,7 @@ class CommentsController < ApplicationController
       @comment.destroy
       respond_with(@comment, location: @post)
     else
-      flash[:alert] = "It's note your comment"
+      flash[:alert] = "It's note your comment,grebaniy GIT"
       redirect_to @post
     end
   end
