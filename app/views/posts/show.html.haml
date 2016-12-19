@@ -12,6 +12,7 @@
   - @post.comments.each do |comment|
     %li.list-group-item
       = comment.body
+      = link_to 'Destroy',[comment.post ,comment], method: :delete, data: { confirm: 'Are you sure?' }
 = form_for [@post, @comment], remote: true do |f|
   - if @comment.errors.any?
     #error_explanation

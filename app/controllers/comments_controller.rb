@@ -32,8 +32,13 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment.destroy
-    respond_with(@comment)
+    if (current_user.id == @comment.user_id)
+      @comment.destroy
+      respond_with(@comment, location: @post)
+    else
+      flash[:alert] = "It's note your comment,grebaniy GIT"
+      redirect_to @post
+    end
   end
 
   private
