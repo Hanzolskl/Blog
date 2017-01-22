@@ -1,8 +1,11 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_post
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
+  respond_to :json, only: [:update]
+  respond_to :html, except: [:update]
+  #respond_to :js, only: [:update]
 
   def index
     @comments = @post.comments.all
@@ -28,17 +31,18 @@ class CommentsController < ApplicationController
 
   def update
     @comment.update(comment_params)
-    respond_with(@comment)
+    respond_with(@post, @comment)
+    #render json: @comment
   end
 
   def destroy
-    if (current_user.id == @comment.user_id)
+    #if (current_user.id == @comment.user_id)
       @comment.destroy
       respond_with(@comment, location: @post)
-    else
-      flash[:alert] = "It's note your comment"
-      redirect_to @post
-    end
+   # else
+     # flash[:alert] = "It's note your comment"
+      #redirect_to @post
+    #end
   end
 
   private
