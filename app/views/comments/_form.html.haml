@@ -1,0 +1,5 @@
+/%textarea.form-control.update_text
+/= @comment.body
+/%input#comment_id{value: @comment.id, hidden:true}
+/%input#post_id{value: @post.id, hidden: true }
+/%button.save_edit= 'Save'
