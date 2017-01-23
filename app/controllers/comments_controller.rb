@@ -31,8 +31,8 @@ class CommentsController < ApplicationController
 
   def update
     @comment.update(comment_params)
-    respond_with(@post, @comment)
-    #render json: @comment
+    #respond_with(@post, @comment)
+    render json: @comment
   end
 
   def destroy

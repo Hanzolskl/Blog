@@ -14,5 +14,4 @@ $ ->
         dataType: 'json'
         success: (data) ->
           $(".list-group").find(li_id).find('.comment_body_div').html(comment_body)
-          debugger
           $(".list-group").find(li_id).find('.myClass').hide()
