@@ -3,15 +3,15 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
   $('.save_edit').click ->
-      post_id = $('#post_id').val()
-      comment_id = $(this).parent().find('#comment_id').val()
+      post_item = $('#post_id').val()
+      comment_item = $(this).parent().find('#comment_id').val()
       comment_body = $(this).parent().find('.update_text').val()
-      li_id = "#li-#{comment_id}"
+      li_id = "#li-#{comment_item}"
       $.ajax
         type: 'PUT'
-        url: "/posts/#{post_id}/comments/#{comment_id}"
+        url: "/posts/#{post_item}/comments/#{comment_item}"
         data: {comment: {body: comment_body} }
         dataType: 'json'
         success: (data) ->
           $(".list-group").find(li_id).find('.comment_body_div').html(comment_body)
-          $(".list-group").find(li_id).find('.myClass').hide()
+          $(".list-group").find(li_id).find('.edit_form').hide()

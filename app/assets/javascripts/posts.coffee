@@ -3,4 +3,4 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
   $('.edit_comment').click ->
-    $(this).parent().find('.myClass').toggle 'slow'
+    $(this).parent().find('.edit_form').toggle 'slow'

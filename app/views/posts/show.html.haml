@@ -15,7 +15,7 @@
         = comment.body
       = link_to 'Destroy',[@post ,comment], method: :delete, data: { confirm: 'Are you sure?' }
       %button.edit_comment Edit
-      %div.myClass{id: "comment-#{comment.id}", style: "display: none"}
+      %div.edit_form{id: "comment-#{comment.id}", style: "display: none"}
         /= form_for [@post, comment], remote: true do |f|
         /  - if comment.errors.any?
         /    #error_explanation
