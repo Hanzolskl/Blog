@@ -38,8 +38,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'pry-rails'
-    gem 'pry-nav', require: false
-    gem 'better_errors'
+  gem 'pry-nav', require: false
+  gem 'better_errors'
 end
 
 group :development do
