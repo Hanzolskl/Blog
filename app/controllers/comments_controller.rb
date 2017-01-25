@@ -37,6 +37,7 @@ class CommentsController < ApplicationController
 
   def destroy
     #if (current_user.id == @comment.user_id)
+      authorize @comment
       @comment.destroy
       respond_with(@comment, location: @post)
    # else
