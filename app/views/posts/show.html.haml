@@ -10,29 +10,30 @@
 %ul.list-group
   %li.list-group-item Comments:
   - @post.comments.each do |comment|
-    %li.list-group-item{id: "li-#{comment.id}"}
-      %div.comment_body_div
-        = comment.body
-      = link_to 'Destroy',[@post ,comment], method: :delete, data: { confirm: 'Are you sure?' }
-      %button.edit_comment Edit
-      %div.edit_form{id: "comment-#{comment.id}", style: "display: none"}
-        /= form_for [@post, comment], remote: true do |f|
-        /  - if comment.errors.any?
-        /    #error_explanation
-        /      %h2= "#{pluralize(@comment.errors.count, "error")} prohibited this comment from being saved:"
-        /      %ul
-        /        - comment.errors.full_messages.each do |msg|
-        /          %li= msg
-        /  .field
-        /    = f.label :body
-        /    = f.text_area :body
-        /  .actions
-        /    = f.submit 'Save'
-        %textarea.form-control.update_text
+    - if comment.id != nil
+      %li.list-group-item{id: "li-#{comment.id}"}
+        %div.comment_body_div
           = comment.body
-        %input#comment_id{value: comment.id, hidden:true}
-        %input#post_id{value: @post.id, hidden: true }
-        %button.save_edit= 'Save'
+        = link_to 'Destroy',[@post ,comment], method: :delete, data: { confirm: 'Are you sure?' }
+        %button.edit_comment Edit
+        %div.edit_form{id: "comment-#{comment.id}", style: "display: none"}
+          /= form_for [@post, comment], remote: true do |f|
+          /  - if comment.errors.any?
+          /    #error_explanation
+          /      %h2= "#{pluralize(@comment.errors.count, "error")} prohibited this comment from being saved:"
+          /      %ul
+          /        - comment.errors.full_messages.each do |msg|
+          /          %li= msg
+          /  .field
+          /    = f.label :body
+          /    = f.text_area :body
+          /  .actions
+          /    = f.submit 'Save'
+          %textarea.form-control.update_text
+            = comment.body
+          %input#comment_id{value: comment.id, hidden:true}
+          %input#post_id{value: @post.id, hidden: true }
+          %button.save_edit= 'Save'
 = form_for [@post, @comment], remote: true do |f|
   - if @comment.errors.any?
     #error_explanation
