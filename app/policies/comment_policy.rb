@@ -1,4 +1,4 @@
-class CommentPolicy
+class CommentPolicy < ApplicationPolicy
 
   def initialize(user, comment)
     @user = user

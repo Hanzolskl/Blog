@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
 
   respond_to :json, only: [:update]
   respond_to :html, except: [:update]
-  #respond_to :js, only: [:update]
+  respond_to :js, only: [:create]
 
   def index
     @comments = @post.comments.all
@@ -26,10 +26,11 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @post.comments.create(comment_params.merge(user_id: current_user.id))
-    respond_with(@comment, location: @post)
+    respond_with(@comment)
   end
 
   def update
+    authorize @comment
     @comment.update(comment_params)
     #respond_with(@post, @comment)
     render json: @comment
