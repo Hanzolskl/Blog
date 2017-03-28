@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :verify_policy_scoped, except: [:show, :index, :new, :edit, :create,]
+  #before_action :verify_policy_scoped, except: [:show, :index, :new, :edit, :create,]
   before_action :set_post
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    #authorize @comment
+    authorize @comment
     @comment.update(comment_params)
     #respond_with(@post, @comment)
     render json: @comment
@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
 
   def destroy
     #if (current_user.id == @comment.user_id)
-      #authorize @comment
+      authorize @comment
       @comment.destroy
       respond_with(@comment, location: @post)
    # else

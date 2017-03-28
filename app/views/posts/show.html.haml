@@ -16,7 +16,7 @@
       %li.list-group-item{id: "li-#{comment.id}"}
         %div.comment_body_div
           = comment.body
-        = link_to 'Destroy',[@post ,comment], method: :delete, data: { confirm: 'Are you sure?' }
+        = link_to 'Destroy', [@post ,comment], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
         %button.edit_comment Edit
         %div.edit_form{id: "comment-#{comment.id}", style: "display: none"}
           /= form_for [@post, comment], remote: true do |f|
