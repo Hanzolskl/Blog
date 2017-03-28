@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
-  $('.save_edit').click ->
+   $(document).on 'click', '.save_edit', ->
       post_item = $('#post_id').val()
       comment_item = $(this).parent().find('#comment_id').val()
       comment_body = $(this).parent().find('.update_text').val()
@@ -15,3 +15,11 @@ $ ->
         success: (data) ->
           $(".list-group").find(li_id).find('.comment_body_div').html(comment_body)
           $(".list-group").find(li_id).find('.edit_form').hide()
+   $(document).on 'click', '.save_new_comment', ->
+    post_item = $('#post_id').val()
+    comment_body =$('.form-control.save_comment').val()
+    $.ajax
+      type: 'POST'
+      url: "/posts/#{post_item}/comments"
+      data: {comment: {body: comment_body} }
+      dataType: 'script'

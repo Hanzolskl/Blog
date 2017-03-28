@@ -31,7 +31,8 @@ class ApplicationPolicy
   end
 
   def destroy?
-    false
+    #@user.id == @comment.user_id
+    true
   end
 
   def scope

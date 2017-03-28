@@ -1,11 +1,12 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
+  #before_action :verify_policy_scoped, except: [:show, :index, :new, :edit, :create,]
   before_action :set_post
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   respond_to :json, only: [:update]
   respond_to :html, except: [:update]
-  #respond_to :js, only: [:update]
+  respond_to :js, only: [:create]
 
   def index
     @comments = @post.comments.all
@@ -26,10 +27,11 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @post.comments.create(comment_params.merge(user_id: current_user.id))
-    respond_with(@comment, location: @post)
+    respond_with(@comment)
   end
 
   def update
+    authorize @comment
     @comment.update(comment_params)
     #respond_with(@post, @comment)
     render json: @comment
@@ -37,6 +39,7 @@ class CommentsController < ApplicationController
 
   def destroy
     #if (current_user.id == @comment.user_id)
+      authorize @comment
       @comment.destroy
       respond_with(@comment, location: @post)
    # else
