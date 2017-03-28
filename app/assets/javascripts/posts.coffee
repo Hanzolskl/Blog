@@ -6,7 +6,7 @@
 #$ ->
 #  $('.edit_comment').click ->
 #    $(this).parent().find('.edit_form').toggle 'slow'
-$('document').ready ->
+#$('document').ready ->
 #  debugger
 #  $('.edit_comment').click ->
 #    $(this).parent().find('.edit_form').toggle 'slow'

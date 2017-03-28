@@ -12,7 +12,7 @@
 %ul.list-group
   %li.list-group-item Comments:
   - @post.comments.each do |comment|
-    - if comment.id != nil
+    - if comment.id.present?
       %li.list-group-item{id: "li-#{comment.id}"}
         %div.comment_body_div
           = comment.body
