@@ -2,7 +2,11 @@ $(function() {
   var comment_body, post_item
   post_item = $('#post_id').val();
   comment_body = $('.form-control.save_comment').val();
-  $(".list-group").append("<li class='list-group-item' id=<%= "li-#{@comment.id}" %>><div class='comment_body_div'></div><a data-confirm='Are you sure?'rel='nofollow'  data-method= 'delete' href= <%="/posts/#{@post.id}/comments/#{@comment.id}"%>>Destroy </a><button class='edit_comment'>Edit</button><div class='edit_form'id='<%= "comment-#{@comment.id}" %>' style='display: none'><textarea class='form-control update_text'><%= @comment.body %></textarea><input hidden id='comment_id'value=<%= @comment.id %>></input><input hidden id='post_id'value=<%= @post.id %>></input><button class='save_edit'>Save</button></div></li>")
+
+  <% if @comment.body.present? %>
+    $(".list-group").append("<li class='list-group-item' id=<%= "li-#{@comment.id}" %>><div class='comment_body_div'></div><a class= 'btn btn-danger' data-confirm='Are you sure?'rel='nofollow'  data-method= 'delete' href= <%="/posts/#{@post.id}/comments/#{@comment.id}"%>>Destroy </a><button class='edit_comment'>Edit</button><div class='edit_form'id='<%= "comment-#{@comment.id}" %>' style='display: none'><textarea class='form-control update_text'><%= @comment.body %></textarea><input hidden id='comment_id'value=<%= @comment.id %>></input><input hidden id='post_id'value=<%= @post.id %>></input><button class='save_edit'>Save</button></div></li>")
+
+
   //$(".list-group").append("<li />");
   //$( "li" ).last().addClass( 'list-group-item' );
   //$( "li" ).last().append("<div />");
@@ -16,6 +20,7 @@ $(function() {
   //document.li.appendChild(btn)
   //$( "li" ).last().append
   return $( "li" ).last().find(".comment_body_div" ).html(comment_body);
+  <% end %>
   //$( "li" ).last().find( "div" ).html(comment_body);
   //return
 });

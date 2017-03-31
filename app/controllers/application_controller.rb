@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   respond_to :html
   protect_from_forgery with: :exception
   def user_not_authorized
-    render plain: 'Error', status: :unauthorized
+    render plain: 'It is not your comment', status: :unauthorized
   end
 end
