@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  #before_action :verify_policy_scoped, except: [:show, :index, :new, :edit, :create,]
+  after_action :verify_authorized, except: [:show, :index, :new, :edit, :create,]
   before_action :set_post
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
