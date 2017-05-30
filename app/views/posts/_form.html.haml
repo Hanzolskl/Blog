@@ -9,9 +9,15 @@
           %li= message
   .field
     = f.label :title
+    %br/
     = f.text_field :title
   .field
+    = f.label :tag_list, "Tags (separated by commas)"
+    %br/
+    = f.text_field :tag_list
+  .field
     = f.label :body
+    %br/
     = f.text_area :body
   .actions
     = f.submit
