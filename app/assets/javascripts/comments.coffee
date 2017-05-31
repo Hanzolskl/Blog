@@ -20,6 +20,9 @@ $ ->
           else
             $("<div class='alert alert-danger'> Body can't be blank </div>" ).insertAfter($(".list-group").find(li_id).find('.edit_form').find('.form-control.update_text'))
             $(".list-group").find(li_id).find('.edit_form').find('.alert.alert-danger').eq(1).remove()
+        error: (data) ->
+          $('body').text(data.responseText)
+          debugger
    $(document).on 'click', '.save_new_comment', ->
     post_item = $('#post_id').val()
     comment_body =$('.form-control.save_comment').val()

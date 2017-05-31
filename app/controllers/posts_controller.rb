@@ -1,11 +1,18 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
+  after_action :verify_authorized, except: [:show, :index, :new, :create,]
+  before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
 
   def index
-    @posts = Post.all
+    if params[:tag]
+      @posts = Post.tagged_with(params[:tag])
+    else
+      @posts = Post.all
+    end
+    #@posts = Post.all
     respond_with(@posts)
   end
 
@@ -21,6 +28,7 @@ class PostsController < ApplicationController
   end
 
   def edit
+    authorize @post
   end
 
   def create
@@ -29,11 +37,13 @@ class PostsController < ApplicationController
   end
 
   def update
+    authorize @post
     @post.update(post_params)
     respond_with(@post)
   end
 
   def destroy
+    authorize @post
     @post.destroy
     respond_with(@post)
   end
@@ -44,6 +54,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, :tag_list)
     end
 end
