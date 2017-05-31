@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
+  after_action :verify_authorized, except: [:show, :index, :new, :create,]
+  before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -26,6 +28,7 @@ class PostsController < ApplicationController
   end
 
   def edit
+    authorize @post
   end
 
   def create
@@ -34,11 +37,13 @@ class PostsController < ApplicationController
   end
 
   def update
+    authorize @post
     @post.update(post_params)
     respond_with(@post)
   end
 
   def destroy
+    authorize @post
     @post.destroy
     respond_with(@post)
   end
