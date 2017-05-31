@@ -18,7 +18,6 @@
       %tr
         %td= post.title
         %td= raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
-        /Uznat pro raw
         %td= post.body
         %td= post.user_id
         %td= link_to 'Show', post
