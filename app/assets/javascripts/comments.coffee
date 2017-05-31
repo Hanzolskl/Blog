@@ -6,7 +6,6 @@ $ ->
       post_item = $('#post_id').val()
       comment_item = $(this).parent().find('#comment_id').val()
       comment_body = $(this).parent().find('.update_text').val()
-      newDiv = document.createElement('div')
       li_id = "#li-#{comment_item}"
       $.ajax
         type: 'PUT'
