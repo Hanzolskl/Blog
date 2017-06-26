@@ -24,6 +24,9 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    #File.open('/home/hanzo/Project/Blog/app/assets/images/cs.jpg') do |f|
+    #  @post.avatar = f
+    #end
     respond_with(@post)
   end
 
@@ -54,6 +57,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :body, :tag_list)
+      params.require(:post).permit(:title, :body, :tag_list, :avatar)
     end
 end
