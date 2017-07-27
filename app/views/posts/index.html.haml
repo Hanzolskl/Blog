@@ -8,6 +8,7 @@
 %table.table.table-bordered
   %thead
     %tr
+      %th Avatars
       %th Title
       %th Tags
       %th Body
@@ -16,6 +17,7 @@
   %tbody
     - @posts.each do |post|
       %tr
+        %td= image_tag(post.avatar_url) if post.avatar?
         %td= post.title
         %td= raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
         %td= post.body

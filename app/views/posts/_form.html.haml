@@ -19,5 +19,10 @@
     = f.label :body
     %br/
     = f.text_area :body
+  .field
+    = f.file_field :avatar
   .actions
     = f.submit
+  .field
+    = f.check_box :remove_avatar
+    = f.label :remove_avatar
