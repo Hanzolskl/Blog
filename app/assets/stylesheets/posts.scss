@@ -5,7 +5,25 @@
   .m { font-size: 1.2em; }
   .l { font-size: 1.8em; }
 }
-
+#rating div { float: left; }
+#rating p { margin: 0; padding: 0; }
+.param {
+    width: 55px;
+    margin: 0 20px 0 0;
+    text-align: Left;
+}
+.param, .rating{ line-height: 28px; }
+.stars{ background: url(stars.png); }
+.stars, #p1 {
+    width: 130px;
+    height: 28px;
+    cursor: pointer;
+}
+#p1 { background: #FFEE00; }
+.rating{
+    margin: 0 0 0 20px;
+    font-weight: bold;
+}
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
