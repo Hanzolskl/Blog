@@ -6,5 +6,6 @@ class Post < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   #after_commit :remove_avatar, on: :destroy
   has_many :comments, -> { order(:created_at) }
+  has_many :raites
   belongs_to :user
 end

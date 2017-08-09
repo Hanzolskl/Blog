@@ -7,8 +7,17 @@
 %p
   %strong user:
   = @post.user_id
+#rating
+  .param Рейтинг:
+  %div
+    .stars
+    %p#p1
+  %p#param1.rating 5.0
+%input#rate{value: average_rating, hidden: true}
 %input#post_id{value: @post.id, hidden: true }
-/Узнать у Ваня(Пофиксить)
+%input#user_id{value: @post.user_id, hidden: true }
+%input#current_user{value: current_user.id , hidden: true }
+//Узнать у Ваня(Пофиксить)
 %ul.list-group
   %li.list-group-item Comments:
   - @post.comments.each do |comment|
